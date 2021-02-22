@@ -10,7 +10,7 @@ add_executable (bind bind.cpp)
 add_executable (threadpool threadpool/threadpool.h threadpool/TestThreadPool.cpp)
 
 # ${CMAKE_THREAD_LIBS_INIT}
-#target_link_libraries (C__11_feature)
+target_link_libraries (threadpool pthread)
 
 
 
