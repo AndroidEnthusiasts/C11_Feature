@@ -1,1 +1,1 @@
-/usr/bin/c++   -std=c++11 -g   CMakeFiles/C__11_feature.dir/main.cpp.o  -o C__11_feature -lpthread 
+/usr/bin/c++   -std=c++17 -g   CMakeFiles/C__11_feature.dir/main.cpp.o  -o C__11_feature 

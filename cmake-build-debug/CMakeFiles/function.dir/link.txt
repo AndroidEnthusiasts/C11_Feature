@@ -1,1 +1,1 @@
-/usr/bin/c++   -std=c++11 -g   CMakeFiles/function.dir/function.cpp.o  -o function 
+/usr/bin/c++   -std=c++17 -g   CMakeFiles/function.dir/function.cpp.o  -o function 
