@@ -284,5 +284,62 @@ https://en.cppreference.com/w/cpp/language/lambda
 - <future>：该头文件主要声明了 std::promise, std::package_task 两个 Provider 类，以及 std::future 和 std::shared_future 两个 Future 类，另外还有一些与之相关的类型和函数，std::async() 函数就声明在此头文件中。
 
 
+### c++11 左值，右值，左值引用，右值引用
+**左值就是有名字的变量（对象），可以被赋值，可以在多条语句中使用，而右值呢，就是临时变量（对象），没有名字，只能在一条语句中出现，不能被赋值。**
+~~~
+int a = 10; //左值是有固定的内存地址，&a即左值的地址，我们可以把&a保存起来，后续通过&a这个地址读取、修改a的内容 但是a的数值是不确定的 地址也获取不到
+~~~
+
+**移动构造函数 （减少了开辟内存，构造成本就降低了。）** 
+Tips:拷贝构造函数中，对于指针，我们一定要采用深层复制，而移动构造函数中，对于指针，我们采用浅层复制。
+~~~
+....
+Str(char value[])
+        {
+            cout<<"普通构造函数..."<<endl;
+            str = NULL;
+            int len = strlen(value);
+            str = (char *)malloc(len + 1);
+            memset(str,0,len + 1);
+            strcpy(str,value);
+        }
+        Str(const Str &s)
+        {
+            cout<<"拷贝构造函数..."<<endl;
+            str = NULL;
+            int len = strlen(s.str);
+            str = (char *)malloc(len + 1);
+            memset(str,0,len + 1);
+            strcpy(str,s.str);
+        }
+        Str(Str &&s) //注意这里的写法 
+        {
+            cout<<"移动构造函数..."<<endl;
+            str = NULL;
+            str = s.str;
+            s.str = NULL;
+        }
+        ~Str()
+        {
+            cout<<"析构函数"<<endl;
+            if(str != NULL)
+            {
+                free(str);
+                str = NULL;
+            }
+        }
+...
+~~~
 
 
+### c++11  std::move & std::forward
+
+**std::move 把一个左值引用“强制转换”为右值引用。** 
+~~~
+template< class T >
+typename std::remove_reference<T>::type&& move( T&& t ) noexcept;
+~~~
+https://tva1.sinaimg.cn/large/008eGmZEly1gnzw2bq85bj30eu0l4dkn.jpg
+
+
+**std::forward 谓完美转发（perfect forwarding），是指在函数模板中，完全依照模板的参数的类型，将参数传递给函数模板中调用的另外一个函数。c++11中提供了这样的一个函数std::forward，它是为转发而生的，它会按照参数本来的类型来转发出去，不管参数类型是T&&这种未定的引用类型还是明确的左值引用或者右值引用。**

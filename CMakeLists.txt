@@ -24,6 +24,8 @@ add_executable(testdectype Testdecltype.cpp)
 add_executable(un UniformInitialization.cpp)
 add_executable (threadpool threadpool/threadpool.h threadpool/TestThreadPool.cpp)
 
+add_executable(forwardandmove forwardandmove.cpp)
+add_subdirectory("stl")
 
 # ${CMAKE_THREAD_LIBS_INIT}
 target_link_libraries (threadpool pthread)
