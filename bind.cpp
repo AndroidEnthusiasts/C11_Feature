@@ -44,8 +44,8 @@ int main(){
     bindFunc();
 
     //利用std::placeholders 占位符可以完成参数顺序的改变
-    auto bindFunc1  = bind(TestBindFunc,std::placeholders::_1,2,3);
-    bindFunc1(30);
+    auto bindFunc1  = bind(TestBindFunc,std::placeholders::_1,std::placeholders::_2,3);
+//    bindFunc1(4);
 
     /***
      * bind 完成函数的转换、参数顺序的改变
