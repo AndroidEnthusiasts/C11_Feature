@@ -339,7 +339,7 @@ Str(char value[])
 template< class T >
 typename std::remove_reference<T>::type&& move( T&& t ) noexcept;
 ~~~
-https://tva1.sinaimg.cn/large/008eGmZEly1gnzw2bq85bj30eu0l4dkn.jpg
+![image-20210222145441004](https://tva1.sinaimg.cn/large/008eGmZEly1gnzw2bq85bj30eu0l4dkn.jpg)
 
 
 **std::forward 谓完美转发（perfect forwarding），是指在函数模板中，完全依照模板的参数的类型，将参数传递给函数模板中调用的另外一个函数。c++11中提供了这样的一个函数std::forward，它是为转发而生的，它会按照参数本来的类型来转发出去，不管参数类型是T&&这种未定的引用类型还是明确的左值引用或者右值引用。**
